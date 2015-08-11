@@ -17,7 +17,7 @@ div(ng-hide='teamsFormed')
         td
           button(ng-click='removePlayer(player)') Remove
 
-  button(ng-click='formTeams()') Form Teams!
+  button(ng-click='formTeams()', ng-show='players.length > 0') Form Teams!
 
 
 div(ng-show='teamsFormed')
