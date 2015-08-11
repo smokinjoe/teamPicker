@@ -16,9 +16,9 @@ var logger = require('morgan');
 // define routes
 // ===========
 var routes = require('./routes/routes');
-var api = require('./routes/api');
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials)
+var api = require('./routes/api');
 app.get('/api/v1', api.index)
 
 // ====================
