@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router();
 
 router.get('/', function (req, res, next) {
-  res.render('team', { title: 'title' });
+  res.send('respond with a resource');
 });
 
 module.exports = router;
