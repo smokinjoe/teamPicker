@@ -20,6 +20,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials)
 var api = require('./routes/api');
 app.get('/api/v1', api.index)
+app.get('/api/v1/get_office', api.getOffice);
 
 // ====================
 // view engine setup
