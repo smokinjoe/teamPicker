@@ -8,32 +8,35 @@
     var methods = {},
         apiUrl = '/api/v1';
 
-    function init(data, callback, fail) {
-      var args = {};
-      args.data = data || {};
-      args.callback = callback || new Function();
-      args.fail = callback || new Function();
-      return args;
+    function init(opts) {
+      var opts = opts || {},
+          params = opts.arguments[0] || {},
+          callback = opts.arguments[1] || new Function(),
+          fail = opts.arguments[2] || new Function(),
+          url = opts.url || '/api/v1',
+          method = opts.method || 'GET',
+          call = function (opts) {
+            $http({
+              url: url,
+              method: method,
+              params: params
+            }).success(callback).error(fail);
+          }
+
+      return call;
     }
 
     methods.version = function (d, cb, f) {
-      var args = init(d, cb, f);
-
-      $http({
-        url: apiUrl,
-        method: 'GET',
-        params: args.data
-      }).success(args.callback).error(args.fail);
+      var resource = init();
+      resource.call();
     };
 
     methods.getOffice = function (d, cb, f) {
-      var args = init(d, cb, f);
-
-      $http({
-        url: apiUrl + '/get_office',
-        method: 'GET',
-        params: args.data
-      }).success(args.callback).error(args.fail);
+      var resource = init({
+        arguments: arguments,
+        url: apiUrl + '/get_office'
+      });
+      resource.call();
     };
 
     return methods;
