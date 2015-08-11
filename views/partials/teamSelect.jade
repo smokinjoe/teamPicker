@@ -1,4 +1,4 @@
-p Lorem ipsum dolor sit amet
+h2 Let's make some teams!
 
 div(ng-hide='teamsFormed')
   form
@@ -18,7 +18,6 @@ div(ng-hide='teamsFormed')
           button(ng-click='removePlayer(player)') Remove
 
   button(ng-click='formTeams()', ng-show='players.length > 0') Form Teams!
-
 
 div(ng-show='teamsFormed')
   table
