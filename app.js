@@ -10,10 +10,6 @@ var app = express();
 // define logging service
 var logger = require('morgan');
 
-// define models
-var Player = require('./models/player');
-var Team = require('./models/team');
-
 // define routes
 var indexRoute = require('./routes/index');
 app.use('/', indexRoute);
