@@ -1,1 +1,32 @@
 p Lorem ipsum dolor sit amet
+
+div(ng-hide='teamsFormed')
+  form
+    input(type='text', ng-model='newPlayerName')
+    button(ng-click='addNewPlayer(newPlayerName)') Add
+    button(ng-click='loadAll()') Whole Office
+
+  table
+    thead
+      tr
+        th Player Name
+        th
+    tbody
+      tr(ng-repeat='player in players')
+        td {{ player }}
+        td
+          button(ng-click='removePlayer(player)') Remove
+
+  button(ng-click='formTeams()') Form Teams!
+
+
+div(ng-show='teamsFormed')
+  table
+    thead
+      tr
+        th Team
+    tbody
+      tr(ng-repeat='player in teams')
+        td {{ players }}
+
+  button(ng-click='resetTeams()') Reset Teams

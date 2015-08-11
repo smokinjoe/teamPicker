@@ -8,7 +8,7 @@
   }]);
 
   angular.module('App.controllers')
-  .controller('TeamSelectCtrl', ['$scope', function ($scope) {
+  .controller('TeamSelectCtrl', ['$scope', 'WHOLE_OFFICE', function ($scope, WHOLE_OFFICE) {
     $scope.players = [];
     $scope.teams = [];
     $scope.teamsFormed = false;
@@ -39,7 +39,7 @@
     }
 
     $scope.loadAll = function () {
-      $scope.players = angular.copy(OFFICE);
+      $scope.players = angular.copy(WHOLE_OFFICE);
     };
 
     $scope.addNewPlayer = function (newPlayerName) {
