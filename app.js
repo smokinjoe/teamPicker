@@ -4,10 +4,6 @@ var favicon = require('serve-favicon');  // TODO JOE: get rid of this
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var dbConfig = require('./config/db');
-var mongoose = require('mongoose');
-mongoose.connect(dbConfig.url);
-
 // TURN ON ZE APP
 var app = express();
 
