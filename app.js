@@ -19,12 +19,14 @@ var Player = require('./models/player');
 var Team = require('./models/team');
 
 // define routes
-var routes = require('./routes/index');
-app.use('/api/v1', routes);
-var player = require('./routes/player');
-app.use('/api/v1/player', player);
-var team = require('./routes/team');
-app.use('/api/v1/team', team);
+var indexRoute = require('./routes/index');
+app.use('/', indexRoute);
+var apiIndexRoute = require('./routes/apiIndex');
+app.use('/api/v1', apiIndexRoute);
+var playerRoute = require('./routes/player');
+app.use('/api/v1/player', playerRoute);
+var teamRoute = require('./routes/team');
+app.use('/api/v1/team', teamRoute);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
