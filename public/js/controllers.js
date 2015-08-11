@@ -8,10 +8,18 @@
   }]);
 
   angular.module('App.controllers')
-  .controller('TeamSelectCtrl', ['$scope', 'WHOLE_OFFICE', function ($scope, WHOLE_OFFICE) {
+  .controller('TeamSelectCtrl', ['$scope', 'Team', 'WHOLE_OFFICE', function ($scope, Team, WHOLE_OFFICE) {
     $scope.players = [];
     $scope.teams = [];
     $scope.teamsFormed = false;
+
+    Team.version({}, function () {
+      console.log('success');
+      debugger;
+    }, function () {
+      console.log('fail');
+      debugger;
+    });
 
     function shuffle(o){
       for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
