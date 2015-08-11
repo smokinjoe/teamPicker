@@ -8,18 +8,32 @@
     var methods = {},
         apiUrl = '/api/v1';
 
-    methods.version = function (data, callback, fail) {
-      var params = {};
-      params.data = data;
+    function init(data, callback, fail) {
+      var args = {};
+      args.data = data || {};
+      args.callback = callback || new Function();
+      args.fail = callback || new Function();
+      return args;
+    }
 
-      callback = callback || new Function();
-      fail = fail || new Function();
+    methods.version = function (d, cb, f) {
+      var args = init(d, cb, f);
 
       $http({
         url: apiUrl,
         method: 'GET',
-        params: params
-      }).success(callback).error(fail);
+        params: args.data
+      }).success(args.callback).error(args.fail);
+    };
+
+    methods.getOffice = function (d, cb, f) {
+      var args = init(d, cb, f);
+
+      $http({
+        url: apiUrl + '/get_office',
+        method: 'GET',
+        params: args.data
+      }).success(args.callback).error(args.fail);
     };
 
     return methods;

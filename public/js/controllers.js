@@ -13,14 +13,6 @@
     $scope.teams = [];
     $scope.teamsFormed = false;
 
-    Team.version({}, function () {
-      console.log('success');
-      debugger;
-    }, function () {
-      console.log('fail');
-      debugger;
-    });
-
     function shuffle(o){
       for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       return o;
@@ -47,7 +39,9 @@
     }
 
     $scope.loadAll = function () {
-      $scope.players = angular.copy(WHOLE_OFFICE);
+      Team.getOffice({}, function (data, status) {
+        $scope.players = data.players;
+      });
     };
 
     $scope.addNewPlayer = function (newPlayerName) {
@@ -76,6 +70,7 @@
       $scope.teamsFormed = false;
       $scope.teams = [];
     };
+
   }]);
 
 }());
