@@ -1,14 +1,8 @@
-var express = require('express'),
-    router = express.Router();
+exports.index = function (req, res) {
+	res.render('index');
+};
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.get('/partials/:name', function (req, res, next) {
+exports.partials = function (req, res) {
   var name = req.params.name;
   res.render('partials/' + name);
-})
-
-module.exports = router;
+};

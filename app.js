@@ -16,20 +16,21 @@ var logger = require('morgan');
 // define routes
 // ===========
 var routes = require('./routes/routes');
-app.use('/', indexRoute);
 var api = require('./routes/api');
-app.use('/api/v1', apiIndexRoute);
+app.get('/', routes.index);
+app.get('/partials/:name', routes.partials)
+app.get('/api/v1', api.index)
 
 // ====================
 // view engine setup
 // ===============
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-// =======================================================
 // uncomment after placing your favicon in /public
 // app.use(favicon(__dirname + '/public/favicon.ico'));
-// ===========================================
+// ====================
+// Setup Environment
+// ==============
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

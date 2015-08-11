@@ -1,8 +1,7 @@
-var express = require('express'),
-    router = express.Router();
-
-router.get('/', function (req, res, next) {
-  res.render('apiIndex', { title: 'Welcome to TeamPicker API version 1.0' });
-});
-
-module.exports = router;
+exports.index = function (req, res) {
+  res.json({
+    data: {
+      version: '0.1'
+    }
+  });
+};
