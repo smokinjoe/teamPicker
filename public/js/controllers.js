@@ -8,35 +8,10 @@
   }]);
 
   angular.module('App.controllers')
-  .controller('TeamSelectCtrl', ['$scope', 'Team', 'WHOLE_OFFICE', function ($scope, Team, WHOLE_OFFICE) {
+  .controller('TeamSelectCtrl', ['$scope', 'Team', function ($scope, Team) {
     $scope.players = [];
     $scope.teams = [];
     $scope.teamsFormed = false;
-
-    function shuffle(o){
-      for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-      return o;
-    }
-
-    function getRandomArbitrary(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    function randChunkSplit (arr, min, max) {
-      var arr = arr.slice();
-      var arrs = [];
-      var size = 1;
-      var min = min || 1;
-      var max = max || min || 1;
-
-      while (arr.length > 0) {
-        var index = getRandomArbitrary(0, arr.length - 1);
-        size = Math.min(max, Math.floor((Math.random() * max) + min));
-        arrs.push(arr.splice(index, size));
-      }
-
-      return arrs;
-    }
 
     $scope.loadAll = function () {
       Team.getOffice({}, function (data, status) {

@@ -38,7 +38,7 @@
       });
       resource.call();
     };
-    
+
     methods.formTeams = function (d, cb, f) {
       var resource = init({
         arguments: arguments,
