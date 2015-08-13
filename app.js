@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');  // TODO JOE: get rid of this
+//var favicon = require('serve-favicon');  // TODO JOE: get rid of this
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -21,6 +21,7 @@ app.get('/partials/:name', routes.partials)
 var api = require('./routes/api');
 app.get('/api/v1', api.index)
 app.get('/api/v1/get_office', api.getOffice);
+app.get('/api/v1/form_teams', api.formTeams);
 
 // ====================
 // view engine setup
@@ -32,7 +33,7 @@ app.set('view engine', 'jade');
 // ====================
 // Setup Environment
 // ==============
-app.use(logger('dev'));
+app.use(logger('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

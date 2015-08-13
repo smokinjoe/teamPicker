@@ -70,6 +70,10 @@
       $scope.teamsFormed = false;
       $scope.teams = [];
     };
+    
+    $scope.testFormTeams = function () {
+      Team.formTeams({ players: $scope.players });
+    };
 
   }]);
 

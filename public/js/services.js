@@ -21,7 +21,7 @@
               method: method,
               params: params
             }).success(callback).error(fail);
-          }
+          };
 
       return call;
     }
@@ -35,6 +35,14 @@
       var resource = init({
         arguments: arguments,
         url: apiUrl + '/get_office'
+      });
+      resource.call();
+    };
+    
+    methods.formTeams = function (d, cb, f) {
+      var resource = init({
+        arguments: arguments,
+        url: apiUrl + '/form_teams'
       });
       resource.call();
     };
