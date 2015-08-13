@@ -3,6 +3,8 @@
 
   angular.module('App.services', []);
 
+  // http://kirkbushell.me/angular-js-using-ng-resource-in-a-more-restful-manner/
+
   angular.module('App.services')
   .service('Team', ['$http', function ($http) {
     var methods = {},
