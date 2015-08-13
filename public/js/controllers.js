@@ -57,22 +57,16 @@
       });
     };
 
-    $scope.formTeams = function () {
-      var numPlayers = $scope.players.length;
-      var groupCount = Math.ceil($scope.players.length / 2);
-      var playerList = shuffle(angular.copy($scope.players));
-
-      $scope.teams = randChunkSplit(playerList, 2);
-      $scope.teamsFormed = $scope.teams.length > 0 ? true : false;
-    };
-
     $scope.resetTeams = function () {
       $scope.teamsFormed = false;
       $scope.teams = [];
     };
-    
-    $scope.testFormTeams = function () {
-      Team.formTeams({ players: $scope.players });
+
+    $scope.formTeams = function () {
+      Team.formTeams({ players: $scope.players }, function (data, status) {
+        $scope.teams = data.teams;
+        $scope.teamsFormed = $scope.teams.length > 0 ? true : false;
+      });
     };
 
   }]);
