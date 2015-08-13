@@ -8,7 +8,7 @@
   }]);
 
   angular.module('App.controllers')
-  .controller('TeamSelectCtrl', ['$scope', 'WHOLE_OFFICE', function ($scope, WHOLE_OFFICE) {
+  .controller('TeamSelectCtrl', ['$scope', 'Team', 'WHOLE_OFFICE', function ($scope, Team, WHOLE_OFFICE) {
     $scope.players = [];
     $scope.teams = [];
     $scope.teamsFormed = false;
@@ -39,7 +39,9 @@
     }
 
     $scope.loadAll = function () {
-      $scope.players = angular.copy(WHOLE_OFFICE);
+      Team.getOffice({}, function (data, status) {
+        $scope.players = data.players;
+      });
     };
 
     $scope.addNewPlayer = function (newPlayerName) {
@@ -55,19 +57,18 @@
       });
     };
 
-    $scope.formTeams = function () {
-      var numPlayers = $scope.players.length;
-      var groupCount = Math.ceil($scope.players.length / 2);
-      var playerList = shuffle(angular.copy($scope.players));
-
-      $scope.teams = randChunkSplit(playerList, 2);
-      $scope.teamsFormed = $scope.teams.length > 0 ? true : false;
-    };
-
     $scope.resetTeams = function () {
       $scope.teamsFormed = false;
       $scope.teams = [];
     };
+
+    $scope.formTeams = function () {
+      Team.formTeams({ players: $scope.players }, function (data, status) {
+        $scope.teams = data.teams;
+        $scope.teamsFormed = $scope.teams.length > 0 ? true : false;
+      });
+    };
+
   }]);
 
 }());

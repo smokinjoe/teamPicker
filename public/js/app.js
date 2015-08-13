@@ -1,7 +1,8 @@
 (function () {
   "use strict";
 
-  var dependencies = ['ngRoute', 'App.controllers', 'App.constants'];
+  var dependencies = ['ngRoute',
+                      'App.constants', 'App.services', 'App.controllers'];
 
   var app = angular.module('teamPickerApp', dependencies);
 
