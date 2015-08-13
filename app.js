@@ -1,8 +1,18 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');  // TODO JOE: get rid of this
+//var favicon = require('serve-favicon');  // TODO JOE: get rid of this
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var log4js = require('log4js');
+
+// ============
+// Logging
+// =======
+var log4js = require('log4js');
+var logger = log4js.getLogger('user');
+logger.setLevel('ERROR');
+logger.setLevel('INFO');
+logger.setLevel('DEBUG');
 
 // ================
 // TURN ON ZE APP
@@ -10,16 +20,18 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // define logging service
-var logger = require('morgan');
+var morgan = require('morgan');
 
 // ================
 // define routes
 // ===========
 var routes = require('./routes/routes');
-var api = require('./routes/api');
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials)
+var api = require('./routes/api');
 app.get('/api/v1', api.index)
+app.get('/api/v1/get_office', api.getOffice);
+app.get('/api/v1/form_teams', api.formTeams);
 
 // ====================
 // view engine setup
@@ -31,7 +43,7 @@ app.set('view engine', 'jade');
 // ====================
 // Setup Environment
 // ==============
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
