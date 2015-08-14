@@ -27,24 +27,24 @@
     }
 
     methods.version = function (d, cb, f) {
-      var resource = init();
-      resource.call();
+      var handler = init();
+      handler.call();
     };
 
     methods.getOffice = function (d, cb, f) {
-      var resource = init({
+      var handler = init({
         arguments: arguments,
         url: apiUrl + '/get_office'
       });
-      resource.call();
+      handler.call();
     };
 
     methods.formTeams = function (d, cb, f) {
-      var resource = init({
+      var handler = init({
         arguments: arguments,
         url: apiUrl + '/form_teams'
       });
-      resource.call();
+      handler.call();
     };
 
     return methods;
