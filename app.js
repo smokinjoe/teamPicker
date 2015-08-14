@@ -23,6 +23,12 @@ var app = express();
 var morgan = require('morgan');
 
 // ================
+// define models
+// ===========
+var Player = require('./models/player');
+var Team = require('./models/team');
+
+// ================
 // define routes
 // ===========
 var routes = require('./routes/routes');
@@ -32,6 +38,10 @@ var api = require('./routes/api');
 app.get('/api/v1', api.index)
 app.get('/api/v1/get_office', api.getOffice);
 app.get('/api/v1/form_teams', api.formTeams);
+var playerRoute = require('./routes/player');
+app.get('/api/v1/player', playerRoute.get);
+var teamRoute = require('./routes/team');
+app.get('/api/v1/team', teamRoute.get);
 
 // ====================
 // view engine setup
