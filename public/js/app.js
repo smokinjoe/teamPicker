@@ -12,6 +12,10 @@
         templateUrl: 'partials/teamSelect',
         controller: 'TeamSelectCtrl'
       }).
+      when('/teamName', {
+        templateUrl: 'partials/teamName',
+        controller: 'TeamNameCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

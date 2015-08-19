@@ -46,4 +46,12 @@
 
   }]);
 
+  angular.module('App.controllers')
+  .controller('TeamNameCtrl', ['$scope', 'Team', function ($scope, Team) {
+    $scope.teamName = '';
+
+    $scope.generateTeamName = Team.generateTeamName({}, function (data, status) {
+      $scope.teamName = data.team_name;
+    });
+  }]);
 }());
