@@ -38,10 +38,16 @@ var api = require('./routes/api');
 app.get('/api/v1', api.index)
 app.get('/api/v1/get_office', api.getOffice);
 app.get('/api/v1/form_teams', api.formTeams);
+
+
 var playerRoute = require('./routes/player');
-app.get('/api/v1/player', playerRoute.get);
+app.get('/api/v1/player', playerRoute.index);
+app.get('/api/v1/player/:id', playerRoute.get);
+app.post('/api/v1/player', playerRoute.create);
 var teamRoute = require('./routes/team');
-app.get('/api/v1/team', teamRoute.get);
+app.get('/api/v1/team', teamRoute.index);
+app.get('/api/v1/team/:id', teamRoute.get);
+app.post('/api/v1/team', teamRoute.create);
 
 // ====================
 // view engine setup
