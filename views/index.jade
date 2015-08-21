@@ -3,27 +3,21 @@ extends layout
 block content
   div#my-vue-instance.container
     div.row
-      UI Element
-    input(type="text", v-model="textInput" class="form-control")
+      h2 UI List Element
 
-    p
+      input.form-control(type="text", v-model="filterKey")
 
-    ul.nav.nav-pills
-      li(v-repeat="library: libraries")
-        a(href="#") {{ library }}
-
-    p
-
-    input.form-control(type="text", placeholder="New library", v-model="newLibrary")
-    button.btn.btn-info(v-on="click: addLibrary") Add library
-    button.btn.btn-danger(v-on="click: deleteLibraries") Delete all libraries
-
-    p
-
-    div.row
-      Vue Instance data object
-      pre
-        {{ $data | json }}
+      table.table.table-hover
+        thead
+          tr
+            th
+              a(href="#", v-on="click: sortvia('id')") id
+            th
+              a(href="#", v-on="click: sortvia('framework')") Framework
+        tbody
+          tr(v-repeat="frameworks | filterBy filterKey | orderBy sortparam reverse")
+            td {{ id }}
+            td {{ framework }}
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')
