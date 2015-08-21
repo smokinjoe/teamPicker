@@ -4,7 +4,11 @@ Vue.filter('upper', function (value) {
 
 Vue.filter('lower', function (value) {
   return value.toLowerCase();
-})
+});
+
+Vue.component('alert', {
+  template: '<div class="alert alert-success" role="alert"><b>Smashing!</b> Nice work.</div>'
+});
 
 var viewModel = new Vue({
   el: '#my-vue-instance',
