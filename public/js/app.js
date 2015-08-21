@@ -1,5 +1,55 @@
 /* Globals _ */
 
+// I dunno, my own class or something?
+
+var Team = (function () {
+  var methods = {},
+      apiUrl = '/api/v1';
+
+  function init(opts) {
+    var opts = opts || {},
+        params = opts.arguments[0] || {},
+        callback = opts.arguments[1] || new Function(),
+        failCb = opts.arguments[2] || new Function(),
+        url = opts.url || '/api/v1',
+        method = opts.method || 'GET',
+        call = function (opts) {
+          $.ajax({
+            url: url,
+            type: method,
+            data: params
+          }).done(callback).fail(failCb);
+        };
+
+        debugger;
+
+    return call;
+  }
+
+  methods.version = function (d, cb, f) {
+    var handler = init();
+    handler.call();
+  };
+
+  methods.getOffice = function (d, cb, f) {
+    var handler = init({
+      arguments: arguments,
+      url: apiUrl + '/get_office'
+    });
+    handler.call();
+  };
+
+  methods.formTeams = function (d, cb, f) {
+    var handler = init({
+      arguments: arguments,
+      url: apiUrl + '/form_teams'
+    });
+    handler.call();
+  };
+
+  return methods;
+}());
+
 // Global Vue filters
 Vue.filter('upper', function (value) {
   return value.toUpperCase();
@@ -60,6 +110,9 @@ var VM_TeamEdit = new Vue({
     },
     formTeams: function () {
       console.log("JOE: formTeams(): ");
+      Team.formTeams(this.players, function () {
+        console.log("JOE: arguments: ", arguments);
+      });
     }
   }
 });
