@@ -7,7 +7,8 @@ Vue.filter('lower', function (value) {
 });
 
 Vue.component('alert', {
-  template: '<div class="alert alert-success" role="alert"><b>Smashing!</b> Nice work.</div>'
+  props: ['type', 'bold', 'msg'],
+  template: '<div class="alert alert-{{ type }}" role="alert"><b>{{ bold }}</b> {{ msg }}</div>'
 });
 
 var viewModel = new Vue({

@@ -7,7 +7,10 @@ block content
       h4 {{ string | upper }}
       h4 {{ string | lower }}
 
-      alert
+      alert(type="info", bold="Greetings.", msg="This is some information.")
+      alert(type="warning", bold="Slow down.", msg="You might crash.")
+      alert(type="danger", bold="Oh no!", msg="The program just crashed!")
+      alert(type="success", bold="Rock Out", msg="with your Props out")
 
   div#another-vue-instance.container
     div.row
