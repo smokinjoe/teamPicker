@@ -3,6 +3,11 @@ extends layout
 block content
   div#my-vue-instance.container
     div.row
+      button.btn.btn-info(v-twitter="'You gotta see how cool Vue.js is!'") Share message!
+
+    div.row
+
+      h2 BEWARE: Global filters and components with funky props below
 
       h4 {{ string | upper }}
       h4 {{ string | lower }}
