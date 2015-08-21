@@ -3,21 +3,9 @@ extends layout
 block content
   div#my-vue-instance.container
     div.row
-      h2 UI List Element
 
-      input.form-control(type="text", v-model="filterKey")
-
-      table.table.table-hover
-        thead
-          tr
-            th
-              a(href="#", v-on="click: sortvia('id')") id
-            th
-              a(href="#", v-on="click: sortvia('framework')") Framework
-        tbody
-          tr(v-repeat="frameworks | filterBy filterKey | orderBy sortparam reverse")
-            td {{ id }}
-            td {{ framework }}
+      h4 {{ string | upper }}
+      h4 {{ string | lower }}
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')
