@@ -27,6 +27,7 @@ var morgan = require('morgan');
 // ===========
 var routes = require('./routes/routes');
 app.get('/', routes.index);
+app.get('/vue', routes.vue);
 app.get('/partials/:name', routes.partials)
 var api = require('./routes/api');
 app.get('/api/v1', api.index)

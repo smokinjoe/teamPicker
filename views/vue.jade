@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div#my-vue-instance.container
+    div.row
+      button.btn.btn-info(v-twitter="'You gotta see how cool Vue.js is!'") Share message!
+
+    div.row
+
+      h2 BEWARE: Global filters and components with funky props below
+
+      h4 {{ string | upper }}
+      h4 {{ string | lower }}
+
+      alert(type="info", bold="Greetings.", msg="This is some information.")
+      alert(type="warning", bold="Slow down.", msg="You might crash.")
+      alert(type="danger", bold="Oh no!", msg="The program just crashed!")
+      alert(type="success", bold="Rock Out", msg="with your Props out")
+
+  div#another-vue-instance.container
+    div.row
+      h4 {{ string | upper }}
+      h4 {{ string | lower }}
+
+  script(src='https://code.jquery.com/jquery-1.11.3.min.js')
+  script(src='js/lib/lodash-3.10.1.js')
+  script(src='js/lib/vue.dev.js')
+  script(src='js/vue.js')

@@ -42,3 +42,10 @@ var viewModel = new Vue({
     string: 'Custom Filters'
   }
 });
+
+var secondViewModel = new Vue({
+  el: '#another-vue-instance',
+  data: {
+    string: 'Lorem ipsum dolor sit amet'
+  }
+});
