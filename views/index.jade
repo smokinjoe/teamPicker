@@ -8,11 +8,24 @@ block content
 
     p
 
+    ul.nav.nav-pills
+      li(v-repeat="library: libraries")
+        a(href="#") {{ library }}
+
+    p
+
+    input.form-control(type="text", placeholder="New library", v-model="newLibrary")
+    button.btn.btn-info(v-on="click: addLibrary") Add library
+    button.btn.btn-danger(v-on="click: deleteLibraries") Delete all libraries
+
+    p
+
     div.row
       Vue Instance data object
+      pre
+        {{ $data | json }}
 
-    {{ $data | json }}
-
+  script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')
   script(src='js/lib/vue.dev.js')
   script(src='js/app.js')
