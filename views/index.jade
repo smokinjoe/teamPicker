@@ -1,13 +1,8 @@
 extends layout
 
 block content
-  div(ng-controller='AppCtrl')
-    div(ng-view)
+	div#my-vue-instance.container
 
   script(src='js/lib/lodash-3.10.1.js')
-  script(src='js/lib/angular/angular.min.js')
-  script(src='js/lib/angular/angular-route.min.js')
+  script(src='js/lib/vue.dev.js')
   script(src='js/app.js')
-  script(src='js/constants.js')
-  script(src='js/services.js')
-  script(src='js/controllers.js')
