@@ -1,3 +1,5 @@
+/* Globals _ */
+
 // Global Vue filters
 Vue.filter('upper', function (value) {
   return value.toUpperCase();
@@ -36,9 +38,28 @@ Vue.directive('twitter', function (message) {
 
 // View Models
 
-var viewModel = new Vue({
-  el: '#my-vue-instance',
+var VM_TeamEdit = new Vue({
+  el: '#AppCtrl',
   data: {
-    string: 'Custom Filters'
+    newPlayerName: '',
+    players: [],
+    team: []
+  },
+  methods: {
+    loadAll: function () {
+      this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
+    },
+    addNewPlayer: function () {
+      this.players.push(this.newPlayerName);
+      this.newPlayerName = '';
+    },
+    removePlayer: function (player) {
+      this.players = _.filter(this.players, function (plyr) {
+        return plyr !== player;
+      });
+    },
+    formTeams: function () {
+      console.log("JOE: formTeams(): ");
+    }
   }
 });

@@ -1,7 +1,26 @@
 extends layout
 
 block content
-  div#my-vue-instance.container
+  div#AppCtrl.container
+    div.row
+      input(type="text", v-model="newPlayerName")
+      button(v-on="click: addNewPlayer()") Add
+      button(v-on="click: loadAll()") Whole Office
+
+      table
+        thead
+          tr
+            th Player Name
+            th
+        tbody
+          tr(v-repeat="player : players")
+            td {{ player }}
+            td
+              button(v-on="click: removePlayer(player)") Remove
+
+      p
+
+      button(v-on="click: formTeams()") Form Teams
 
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
