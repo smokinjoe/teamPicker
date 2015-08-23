@@ -97,7 +97,7 @@ var VM_TeamEdit = new Vue({
   },
   methods: {
     loadAll: function () {
-      this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
+      this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
     },
     addNewPlayer: function () {
       this.players.push(this.newPlayerName);
