@@ -22,6 +22,16 @@ block content
 
       button(v-on="click: formTeams()") Form Teams
 
+    div.row
+      table
+        thead
+          tr
+            th Team
+        tbody
+          tr(v-repeat="players : teams")
+            td {{ players }}
+
+      button(v-on="click: resetTeams()") Reset Teams
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')

@@ -93,7 +93,7 @@ var VM_TeamEdit = new Vue({
   data: {
     newPlayerName: '',
     players: [],
-    team: []
+    teams: []
   },
   methods: {
     loadAll: function () {
@@ -109,9 +109,14 @@ var VM_TeamEdit = new Vue({
       });
     },
     formTeams: function () {
+      var that = this;
+
       Team.formTeams({ players: this.players }, function (data, message, status) {
-        this.teams = data.teams;
+        that.teams = data.teams;
       });
+    },
+    resetTeams: function () {
+      this.teams = [];
     }
   }
 });
