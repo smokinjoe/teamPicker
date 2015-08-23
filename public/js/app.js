@@ -17,7 +17,7 @@ var Team = (function () {
           $.ajax({
             url: apiUrl + url,
             type: method,
-            data: { data: params }
+            data: params
           }).done(callback).fail(failCb);
         };
 
@@ -109,9 +109,8 @@ var VM_TeamEdit = new Vue({
       });
     },
     formTeams: function () {
-      console.log("JOE: formTeams(): ");
-      Team.formTeams(this.players, function () {
-        console.log("JOE: arguments: ", arguments);
+      Team.formTeams({ players: this.players }, function (data, message, status) {
+        this.teams = data.teams;
       });
     }
   }

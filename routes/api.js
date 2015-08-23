@@ -1,4 +1,5 @@
 var CONSTANTS = require('./../services/constants');
+var joe = require('./../services/joe');
 
 // utility methods
 function shuffle(o){

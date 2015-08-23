@@ -8,7 +8,7 @@ logger.setLevel('INFO');
 logger.setLevel('DEBUG');
 
 var methods = {
-  checkRequest: function () {
+  checkRequest: function (req) {
     logger.debug("JOE: req.params: ", req.params);
     logger.debug("JOE: req.body: ", req.body);
     logger.debug("JOE: req.query: ", req.query);
