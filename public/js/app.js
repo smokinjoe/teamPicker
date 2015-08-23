@@ -1,4 +1,4 @@
-/* Globals _ */
+/* Globals _ $ */
 
 // I dunno, my own class or something?
 
