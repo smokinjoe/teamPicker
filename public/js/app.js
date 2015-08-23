@@ -15,13 +15,13 @@ var Team = (function () {
         method = opts.method || 'GET',
         call = function (opts) {
           $.ajax({
-            url: url,
+            url: apiUrl + url,
             type: method,
-            data: params
+            data: { data: params }
           }).done(callback).fail(failCb);
         };
 
-        debugger;
+        // debugger;
 
     return call;
   }
@@ -34,7 +34,7 @@ var Team = (function () {
   methods.getOffice = function (d, cb, f) {
     var handler = init({
       arguments: arguments,
-      url: apiUrl + '/get_office'
+      url: '/get_office'
     });
     handler.call();
   };
@@ -42,7 +42,7 @@ var Team = (function () {
   methods.formTeams = function (d, cb, f) {
     var handler = init({
       arguments: arguments,
-      url: apiUrl + '/form_teams'
+      url: '/form_teams'
     });
     handler.call();
   };
