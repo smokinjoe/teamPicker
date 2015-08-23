@@ -1,38 +1,34 @@
 /* Globals _ $ */
 
 // I dunno, my own class or something?
+var Ajax = function (opts) {
+  var opts = opts || {},
+      params = opts.arguments[0] || {},
+      callback = opts.arguments[1] || new Function(),
+      failCb = opts.arguments[2] || new Function(),
+      url = opts.url || '/api/v1',
+      method = opts.method || 'GET',
+      call = function (opts) {
+        $.ajax({
+          url: apiUrl + url,
+          type: method,
+          data: params
+        }).done(callback).fail(failCb);
+      };
+
+  return call;
+};
 
 var Team = (function () {
-  var methods = {},
-      apiUrl = '/api/v1';
-
-  function init(opts) {
-    var opts = opts || {},
-        params = opts.arguments[0] || {},
-        callback = opts.arguments[1] || new Function(),
-        failCb = opts.arguments[2] || new Function(),
-        url = opts.url || '/api/v1',
-        method = opts.method || 'GET',
-        call = function (opts) {
-          $.ajax({
-            url: apiUrl + url,
-            type: method,
-            data: params
-          }).done(callback).fail(failCb);
-        };
-
-        // debugger;
-
-    return call;
-  }
+  var methods = {};
 
   methods.version = function (d, cb, f) {
-    var handler = init();
+    var handler = new Ajax();
     handler.call();
   };
 
   methods.getOffice = function (d, cb, f) {
-    var handler = init({
+    var handler = new Ajax({
       arguments: arguments,
       url: '/get_office'
     });
@@ -40,7 +36,7 @@ var Team = (function () {
   };
 
   methods.formTeams = function (d, cb, f) {
-    var handler = init({
+    var handler = new Ajax({
       arguments: arguments,
       url: '/form_teams'
     });
