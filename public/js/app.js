@@ -91,16 +91,16 @@ var VM_TeamEdit = new Vue({
     }
   },
   methods: {
-    _digest: function (e) {
+    _preHook: function (e) {
       if (e) e.preventDefault();
       this.clearErrors();
     },
     loadAll: function (e) {
-      this._digest(e);
+      this._preHook(e);
       this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
     },
     addNewPlayer: function (e) {
-      this._digest(e);
+      this._preHook(e);
       if (this.newPlayerName.length === 0) {
         this.addError('Mr. Blank stinks, choose someone better.');
       }
