@@ -32,6 +32,7 @@ var api = require('./routes/api');
 app.get('/api/v1', api.index)
 app.get('/api/v1/get_office', api.getOffice);
 app.get('/api/v1/form_teams', api.formTeams);
+app.get('/api/v1/generate_team_name', api.generateTeamName)
 
 // ====================
 // view engine setup

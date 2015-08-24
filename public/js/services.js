@@ -47,6 +47,14 @@
       handler.call();
     };
 
+    methods.generateTeamName = function (d, cb, f) {
+      var handler = init({
+        arguments: arguments,
+        url: apiUrl + '/generate_team_name'
+      });
+      handler.call();
+    };
+
     return methods;
   }]);
 

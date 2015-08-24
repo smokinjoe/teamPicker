@@ -26,6 +26,10 @@ function randChunkSplit (arr, min, max) {
   return arrs;
 }
 
+function randomArrayIndex(arr) {
+  return arr[Math.floor(( Math.random() * arr.length ))];
+}
+
 var methods = {
   index: function (req, res) {
     res.json({
@@ -46,6 +50,23 @@ var methods = {
 
     res.json({
       teams: teams
+    });
+  },
+  generateTeamNames: function (req, res) {
+    var adjIndex = randomArrayIndex(CONSTANTS.ADJECTIVES),
+        verbIndex = randomArrayIndex(CONSTANTS.VERBS),
+        nounIndex = randomArrayIndex(CONSTANTS.NOUNS),
+        result = '';
+
+    if ( randomArrayIndex(new Array(2)) == 1 ) {
+      result = 'The ' + verb + ' ' + noun + ':';
+    }
+    else {
+      result = 'The ' + adjective + ' ' + noun + ':';
+    }
+
+    res.json({
+      team_name: result
     });
   }
 };
