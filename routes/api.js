@@ -27,6 +27,22 @@ function randChunkSplit (arr, min, max) {
   return arrs;
 }
 
+var generateTeamName = function (cb) {
+  var adjIndex = randomArrayIndex(CONSTANTS.ADJECTIVES),
+      verbIndex = randomArrayIndex(CONSTANTS.VERBS),
+      nounIndex = randomArrayIndex(CONSTANTS.NOUNS),
+      result = '';
+
+  if ( randomArrayIndex(new Array(2)) == 1 ) {
+    result = 'The ' + verb + ' ' + noun + ':';
+  }
+  else {
+    result = 'The ' + adjective + ' ' + noun + ':';
+  }
+
+  if (cb) cb(result);
+};
+
 var methods = {
   index: function (req, res) {
     res.json({
@@ -47,6 +63,13 @@ var methods = {
 
     res.json({
       teams: teams
+    });
+  },
+  generateTeamName: function (req, res) {
+    generateTeamName(function (teamName) {
+      res.json({
+        team_name: teamName
+      });
     });
   }
 };
