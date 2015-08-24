@@ -1,4 +1,5 @@
-/* Globals _ $ */
+/* Globals _ $ Vue */
+Vue.config.debug = true;
 
 // I dunno, my own class or something?
 var joe = (function () {
@@ -64,40 +65,11 @@ var Team = (function () {
   return methods;
 }());
 
-// Global Vue filters
-Vue.filter('upper', function (value) {
-  return value.toUpperCase();
-});
+// Global Vue components
 
-Vue.filter('lower', function (value) {
-  return value.toLowerCase();
-});
-
-// Global Vue components/attributes
-
-Vue.component('alert', {
-  props: ['type', 'bold', 'msg'],
-  template: '<div class="alert alert-{{ type }}" role="alert"><b>{{ bold }}</b> {{ msg }}</div>'
-});
-
-// Global Vue directives
-
-Vue.directive('twitter', function (message) {
-  this.el.addEventListener('click', function () {
-    var width = 818,
-        height = 400,
-        left = (document.documentElement.clientWidth - width) / 2,
-        top = (document.documentElement.clientHeigh - height) / 2,
-        url = 'https://twitter.com/intent/tweet?text=' + message + '&url=http://vegibit.com',
-        opts = 'status=1' +
-            ',width=' + width +
-            ',height=' + height +
-            ',top=' + top +
-            ',left=' + left;
-
-      window.open(url, 'twitter', opts);
-      return false;
-  });
+Vue.component('errors', {
+  props: ['type', 'title', 'html'],
+  template: '<div class="alert alert-{{ type }}" role="alert""><strong>{{ title }}</strong> {{ html }}</div>'
 });
 
 // View Models
@@ -107,17 +79,32 @@ var VM_TeamEdit = new Vue({
   data: {
     newPlayerName: '',
     players: [],
-    teams: []
+    teams: [],
+    errors: {
+      show: false,
+      msgs: [],
+      alert: {
+        style: 'display:none;',
+        title: 'There were errors:',
+        html: ''
+      }
+    }
   },
   methods: {
     loadAll: function (e) {
-      this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
       e.preventDefault();
+      this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
     },
     addNewPlayer: function (e) {
-      this.players.push(this.newPlayerName);
-      this.newPlayerName = '';
       e.preventDefault();
+      if (this.newPlayerName.length === 0) {
+        this.addError('Mr. Blank stinks, choose someone better.');
+      }
+      else {
+        this.clearErrors();
+        this.players.push(this.newPlayerName);
+        this.newPlayerName = '';
+      }
     },
     removePlayer: function (player) {
       this.players = _.filter(this.players, function (plyr) {
@@ -145,6 +132,32 @@ var VM_TeamEdit = new Vue({
     },
     resetTeams: function () {
       this.teams = [];
+    },
+    addError: function (error) {
+      this.errors.msgs.push(error);
+      this.errors.show = true;
+      this.refreshErrors();
+    },
+    refreshErrors: function () {
+      if (this.errors.show) {
+        this.errors.alert.style = 'display:block';
+      }
+      else {
+        this.errors.alert.style = 'display:none';
+      }
+      this.generateErrorHtml();
+    },
+    generateErrorHtml: function () {
+      var html = '';
+      _.forEach(this.errors.msgs, function (msg) {
+        html += msg;
+      });
+      this.errors.alert.html = html;
+    },
+    clearErrors: function () {
+      this.errors.msgs = [];
+      this.errors.show = false;
+      this.refreshErrors();
     }
   }
 });

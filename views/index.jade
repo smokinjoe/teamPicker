@@ -4,6 +4,8 @@ block content
   div#AppCtrl.container-fluid
     div.row
       div.col-md-6
+        errors(v-show="errors.show", type="danger", title="{{ errors.alert.title }}", html="{{ errors.alert.html }}")
+
         form
           div.input-group
             input.form-control(type="text", v-model="newPlayerName")
