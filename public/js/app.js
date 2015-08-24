@@ -124,13 +124,17 @@ var VM_TeamEdit = new Vue({
     },
     formTeams: function () {
       var that = this,
-          teams = [];
+          teamsOfPlayers = [];
 
       Team.formTeams({ players: this.players }, function (data, message, status) {
-        teams = data.teams;
+        teamsOfPlayers = data.teams;
         Team.getNames({ num: data.teams.length }, function (data, message, status) {
-          _.forEach(teams, function (team, i) {
-            team.name = data.team_names[i];
+          var teams = [];
+          _.forEach(teamsOfPlayers, function (team, i) {
+            teams.push({
+              name: data.team_names[i],
+              players: team
+            });
           });
 
           that.teams = teams;

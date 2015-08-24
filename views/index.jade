@@ -25,7 +25,7 @@ block content
               th Player Name
               th
           tbody
-            tr(v-repeat="player : players")
+            tr(v-repeat="player : players | orderBy player")
               td {{ player }}
               td
                 button.btn.btn-danger.btn-xs(v-on="click: removePlayer(player)") Remove
@@ -37,9 +37,9 @@ block content
               th Team
               th
           tbody
-            tr(v-repeat="players : teams")
-              td {{ teams[$index].name }}
-              td {{ players }}
+            tr(v-repeat="team : teams | orderBy team.name ")
+              td {{ team.name }}
+              td {{ team.players }}
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')
