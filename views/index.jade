@@ -1,39 +1,45 @@
 extends layout
 
 block content
-  div#AppCtrl.container
+  div#AppCtrl.container-fluid
     div.row
-      input(type="text", v-model="newPlayerName")
-      button(v-on="click: addNewPlayer()") Add
-      button(v-on="click: loadAll()") Whole Office
+      div.col-md-6
+        div.input-group
+          input.form-control(type="text", v-model="newPlayerName")
+          div.input-group-btn
+            button.btn.btn-primary(v-on="click: addNewPlayer()") Add
+            button.btn.btn-default(v-on="click: loadAll()") Whole Office
 
-      table
-        thead
-          tr
-            th Player Name
-            th
-        tbody
-          tr(v-repeat="player : players")
-            td {{ player }}
-            td
-              button(v-on="click: removePlayer(player)") Remove
+      div.col-md-6
+        div.input-group
+          div.input-group-btn
+            button.btn.btn-primary(v-on="click: formTeams()") Form Teams
+            button.btn.btn-danger(v-on="click: resetTeams()") Reset Teams
 
-      p
-
-      button(v-on="click: formTeams()") Form Teams
 
     div.row
-      table
-        thead
-          tr
-            th Team
-            th
-        tbody
-          tr(v-repeat="players : teams")
-            td {{ teams[$index].name }}
-            td {{ players }}
+      div.col-md-6
+        table.table.table-hover
+          thead
+            tr
+              th Player Name
+              th
+          tbody
+            tr(v-repeat="player : players")
+              td {{ player }}
+              td
+                button.btn.btn-danger.btn-xs(v-on="click: removePlayer(player)") Remove
 
-      button(v-on="click: resetTeams()") Reset Teams
+      div.col-md-6
+        table.table.table-hover
+          thead
+            tr
+              th Team
+              th
+          tbody
+            tr(v-repeat="players : teams")
+              td {{ teams[$index].name }}
+              td {{ players }}
 
   script(src='https://code.jquery.com/jquery-1.11.3.min.js')
   script(src='js/lib/lodash-3.10.1.js')
