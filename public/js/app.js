@@ -110,12 +110,14 @@ var VM_TeamEdit = new Vue({
     teams: []
   },
   methods: {
-    loadAll: function () {
+    loadAll: function (e) {
       this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
+      e.preventDefault();
     },
-    addNewPlayer: function () {
+    addNewPlayer: function (e) {
       this.players.push(this.newPlayerName);
       this.newPlayerName = '';
+      e.preventDefault();
     },
     removePlayer: function (player) {
       this.players = _.filter(this.players, function (plyr) {

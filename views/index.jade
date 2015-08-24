@@ -4,18 +4,18 @@ block content
   div#AppCtrl.container-fluid
     div.row
       div.col-md-6
-        div.input-group
-          input.form-control(type="text", v-model="newPlayerName")
-          div.input-group-btn
-            button.btn.btn-primary(v-on="click: addNewPlayer()") Add
-            button.btn.btn-default(v-on="click: loadAll()") Whole Office
+        form
+          div.input-group
+            input.form-control(type="text", v-model="newPlayerName")
+            div.input-group-btn
+              button.btn.btn-primary(v-on="click: addNewPlayer($event)") Add
+              button.btn.btn-default(v-on="click: loadAll($event)") Whole Office
 
       div.col-md-6
         div.input-group
           div.input-group-btn
             button.btn.btn-primary(v-on="click: formTeams()") Form Teams
             button.btn.btn-danger(v-on="click: resetTeams()") Reset Teams
-
 
     div.row
       div.col-md-6
