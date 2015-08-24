@@ -54,6 +54,10 @@ var generateTeamNames = function (num, cb) {
   if (cb) cb(result);
 };
 
+var randomArrayIndex = function (arr) {
+  return arr[Math.floor(( Math.random() * arr.length ))];
+};
+
 var methods = {
   index: function (req, res) {
     res.json({
