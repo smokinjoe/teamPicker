@@ -2,16 +2,16 @@ var CONSTANTS = require('./../services/constants');
 var joe = require('./../services/joe');
 
 // utility methods
-function shuffle(o){
+var shuffle = function (o) {
   for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   return o;
-}
+};
 
-function getRandomArbitrary(min, max) {
+var getRandomArbitrary = function (min, max) {
   return Math.random() * (max - min) + min;
-}
+};
 
-function randChunkSplit (arr, min, max) {
+var randChunkSplit = function (arr, min, max) {
   var arr = arr.slice();
   var arrs = [];
   var size = 1;
@@ -25,19 +25,30 @@ function randChunkSplit (arr, min, max) {
   }
 
   return arrs;
-}
+};
 
-var generateTeamName = function (cb) {
-  var adjIndex = randomArrayIndex(CONSTANTS.ADJECTIVES),
-      verbIndex = randomArrayIndex(CONSTANTS.VERBS),
-      nounIndex = randomArrayIndex(CONSTANTS.NOUNS),
-      result = '';
+var randomArrayIndex = function (arr) {
+  return arr[Math.floor(( Math.random() * arr.length ))];
+};
 
-  if ( randomArrayIndex(new Array(2)) == 1 ) {
-    result = 'The ' + verb + ' ' + noun + ':';
-  }
-  else {
-    result = 'The ' + adjective + ' ' + noun + ':';
+var generateTeamNames = function (num, cb) {
+  num = num || 1;
+  var adjective = '',
+      verb = '',
+      noun = '',
+      result = [];
+
+  for (var i = 0; i < num; i++) {
+    adjective = randomArrayIndex(CONSTANTS.ADJECTIVES);
+    verb = randomArrayIndex(CONSTANTS.VERBS);
+    noun = randomArrayIndex(CONSTANTS.NOUNS);
+
+    if ( randomArrayIndex(new Array(2)) == 1 ) {
+      result.push('The ' + verb + ' ' + noun + ':');
+    }
+    else {
+      result.push('The ' + adjective + ' ' + noun + ':');
+    }
   }
 
   if (cb) cb(result);
@@ -65,10 +76,12 @@ var methods = {
       teams: teams
     });
   },
-  generateTeamName: function (req, res) {
-    generateTeamName(function (teamName) {
+  generateTeamNames: function (req, res) {
+    var num = req.query.num;
+
+    generateTeamNames(num, function (teamNames) {
       res.json({
-        team_name: teamName
+        team_names: teamNames
       });
     });
   }
