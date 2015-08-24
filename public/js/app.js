@@ -91,17 +91,20 @@ var VM_TeamEdit = new Vue({
     }
   },
   methods: {
+    _digest: function (e) {
+      if (e) e.preventDefault();
+      this.clearErrors();
+    },
     loadAll: function (e) {
-      e.preventDefault();
+      this._digest(e);
       this.players = [ 'Joe', 'Manny', 'Michael', 'Vengadesh', 'Pankaj', 'Sunil', 'Max', 'Roman', 'Audrey', 'Chris', 'Sohail', 'Scott', 'Stephen', 'Bobby' ];
     },
     addNewPlayer: function (e) {
-      e.preventDefault();
+      this._digest(e);
       if (this.newPlayerName.length === 0) {
         this.addError('Mr. Blank stinks, choose someone better.');
       }
       else {
-        this.clearErrors();
         this.players.push(this.newPlayerName);
         this.newPlayerName = '';
       }
