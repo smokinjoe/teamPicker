@@ -24,8 +24,10 @@ div(ng-show='teamsFormed')
     thead
       tr
         th Team
+        th
     tbody
       tr(ng-repeat='players in teams')
+        td {{ teams[$index].name }}
         td {{ players }}
 
   button(ng-click='resetTeams()') Reset Teams

@@ -47,6 +47,14 @@
       handler.call();
     };
 
+    methods.getNames = function (d, cb, f) {
+      var handler = init({
+        arguments: arguments,
+        url: apiUrl + '/generate_team_names'
+      });
+      handler.call();
+    };
+
     return methods;
   }]);
 

@@ -41,6 +41,11 @@
       Team.formTeams({ players: $scope.players }, function (data, status) {
         $scope.teams = data.teams;
         $scope.teamsFormed = $scope.teams.length > 0 ? true : false;
+        Team.getNames({ num: $scope.teams.length }, function (data, status) {
+          _.forEach($scope.teams, function (team, index) {
+            team.name = data.team_names[index];
+          });
+        })
       });
     };
 
