@@ -1,6 +1,16 @@
 /* Globals _ $ */
 
 // I dunno, my own class or something?
+var joe = (function () {
+  var methods = {};
+
+  methods.log = function (key) {
+    console.log("JOE: " + key + ": ", key);
+  }
+
+  return methods;
+}());
+
 var Ajax = function (opts) {
   var opts = opts || {},
       params = opts.arguments[0] || {},
@@ -39,6 +49,14 @@ var Team = (function () {
     var handler = new Ajax({
       arguments: arguments,
       url: '/form_teams'
+    });
+    handler.call();
+  };
+
+  methods.getNames = function (d, cb, f) {
+    var handler = new Ajax({
+      arguments: arguments,
+      url: '/generate_team_names'
     });
     handler.call();
   };
@@ -105,10 +123,18 @@ var VM_TeamEdit = new Vue({
       });
     },
     formTeams: function () {
-      var that = this;
+      var that = this,
+          teams = [];
 
       Team.formTeams({ players: this.players }, function (data, message, status) {
-        that.teams = data.teams;
+        teams = data.teams;
+        Team.getNames({ num: data.teams.length }, function (data, message, status) {
+          _.forEach(teams, function (team, i) {
+            team.name = data.team_names[i];
+          });
+
+          that.teams = teams;
+        });
       });
     },
     resetTeams: function () {

@@ -27,8 +27,10 @@ block content
         thead
           tr
             th Team
+            th
         tbody
           tr(v-repeat="players : teams")
+            td {{ teams[$index].name }}
             td {{ players }}
 
       button(v-on="click: resetTeams()") Reset Teams
