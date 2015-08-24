@@ -6,11 +6,11 @@ var Ajax = function (opts) {
       params = opts.arguments[0] || {},
       callback = opts.arguments[1] || new Function(),
       failCb = opts.arguments[2] || new Function(),
-      url = opts.url || '/api/v1',
+      url = '/api/v1' + (opts.url ? opts.url : ''),
       method = opts.method || 'GET',
       call = function (opts) {
         $.ajax({
-          url: apiUrl + url,
+          url: url,
           type: method,
           data: params
         }).done(callback).fail(failCb);
