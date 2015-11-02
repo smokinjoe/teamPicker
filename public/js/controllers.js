@@ -13,6 +13,8 @@
     $scope.teams = [];
     $scope.teamsFormed = false;
 
+    console.log('TeamSelectCtrl');
+
     $scope.loadAll = function () {
       Team.getOffice({}, function (data, status) {
         $scope.players = data.players;
