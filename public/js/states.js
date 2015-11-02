@@ -7,7 +7,7 @@
 
     $stateProvider.
       state('root', {
-        url: '',
+        url: '/',
         templateUrl: 'partials/teamSelect',
         controller: 'TeamSelectCtrl'
       }).
